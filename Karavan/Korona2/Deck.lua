@@ -2,12 +2,12 @@
 local physics = require( "physics" )
 local gameUI = require("gameUI")
 Deck = {
-
+DeckOfCards = {},
 showcard,
-trefle = {},
-pique = {},
-coeur = {},
-carreau = {},
+--trefle = {},
+--pique = {},
+--coeur = {},
+--carreau = {},
 physics = require( "physics" )
 }
 function Deck:new(id)
@@ -35,9 +35,9 @@ function Deck:showCard(familyName, number)
 --    self.showcard[id_showcard]:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable
 --    self.showcard[id_showcard].isFixedRotation = true
 
-local png = self[familyName][number]
+local png = self.DeckOfCards[familyName][number]
 print("showing this cards : " .. png)
-local card = display.newImage( self[familyName][number], 120, 392 )
+local card = display.newImage( self.DeckOfCards[familyName][number], 120, 392 )
 physics.addBody( card )
 card:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 
@@ -61,23 +61,25 @@ function Deck:addFamily(familyName)
     end
 
     --Get the path of the .png
-    print("F:\\GIT\\Karavan\\Korona2\\cards\\" .. tostring(number) .. '.png')
+    --print("F:\\GIT\\Karavan\\Korona2\\cards\\" .. tostring(number) .. '.png')
     local basePath = "F:\\GIT\\Karavan\\Korona2\\cards\\"
     
-    self[familyName][1] = basePath .. tostring(number) .. '.png'
-    self[familyName][2] = basePath .. tostring(number*2) .. '.png'
-    self[familyName][3] = basePath .. tostring(number*3).. '.png'
-    self[familyName][4] = basePath .. tostring(number*4).. '.png'
-    self[familyName][5] = basePath .. tostring(number*5).. '.png'
-    self[familyName][6] = basePath .. tostring(number*6).. '.png'
-    self[familyName][7] = basePath .. tostring(number*7).. '.png'
-    self[familyName][8] = basePath .. tostring(number*8).. '.png'
-    self[familyName][9] = basePath .. tostring(number*9).. '.png'
-    self[familyName][10] = basePath .. tostring(number*10).. '.png'
-    self[familyName][11] = basePath .. tostring(number*11).. '.png'
-    self[familyName][12] = basePath .. tostring(number*12).. '.png'
-    self[familyName][13] = basePath .. tostring(number*13).. '.png'
-    print(self[familyName][13])
+    self.DeckOfCards[familyName][1] = basePath .. tostring(number) .. '.png'
+    print(self.DeckOfCards[familyName][1])
+    self.DeckOfCards[familyName][2] = basePath .. tostring(number*2) .. '.png'
+    self.DeckOfCards(self[familyName][2])
+    self.DeckOfCards[familyName][3] = basePath .. tostring(number*3).. '.png'
+    self.DeckOfCards[familyName][4] = basePath .. tostring(number*4).. '.png'
+    self.DeckOfCards[familyName][5] = basePath .. tostring(number*5).. '.png'
+    self.DeckOfCards[familyName][6] = basePath .. tostring(number*6).. '.png'
+    self.DeckOfCards[familyName][7] = basePath .. tostring(number*7).. '.png'
+    self.DeckOfCards[familyName][8] = basePath .. tostring(number*8).. '.png'
+    self.DeckOfCards[familyName][9] = basePath .. tostring(number*9).. '.png'
+    self.DeckOfCards[familyName][10] = basePath .. tostring(number*10).. '.png'
+    self.DeckOfCards[familyName][11] = basePath .. tostring(number*11).. '.png'
+    self.DeckOfCards[familyName][12] = basePath .. tostring(number*12).. '.png'
+    self.DeckOfCards[familyName][13] = basePath .. tostring(number*13).. '.png'
+    print(self.DeckOfCards[familyName][13])
 end
 
 

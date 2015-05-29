@@ -22,6 +22,7 @@ require("Deck")
 local Player1 = Deck:new(1)
 local Player2 = Deck:new(2)
 local Croupier = Deck:new(3)
+
 Player1:showCard('trefle', '2')
 Player2:showCard('crate.png', '')
 Croupier:showCard('crate.png', '')
