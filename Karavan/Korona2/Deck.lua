@@ -10,9 +10,8 @@ coeur = {},
 carreau = {},
 physics = require( "physics" )
 }
-
 function Deck:new(id)
-    print('New Deck is created' .. tostring(id))
+    print('New Deck is created: ' .. tostring(id))
     	local instance = {}
 	setmetatable(instance, self)
 	self.__index = self
@@ -24,7 +23,8 @@ function Deck:new(id)
     return self
 end
 
-function Deck:showCard(familyName, Number)
+function Deck:showCard(familyName, number)
+    print("Deck:showCard : " .. familyName, number)
 --    local png = 'cards\\' .. tostring(familyName) .. tostring(Number)
 --    local id_showcard = #self.showcard + 1
 --    print('id showcard: ' ..id_showcard)
@@ -35,12 +35,11 @@ function Deck:showCard(familyName, Number)
 --    self.showcard[id_showcard]:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable
 --    self.showcard[id_showcard].isFixedRotation = true
 
-
-local crate1 = display.newImage( "crate.png", 120, 392 )
-
-
-physics.addBody( crate1 )
-crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
+local png = self[familyName][number]
+print("showing this cards : " .. png)
+local card = display.newImage( self[familyName][number], 120, 392 )
+physics.addBody( card )
+card:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 
 end
 
@@ -51,33 +50,35 @@ end
 function Deck:addFamily(familyName)
     print("creating family = " .. tostring(familyName))
 
-    if familyName == trefle then
-        _number = 1
-        elseif familyName == pique then
+    if familyName == 'trefle' then
+        number = 1
+        elseif familyName == 'pique' then
         number = 2
-        elseif familyName == coeur then
+        elseif familyName == 'coeur' then
         number = 3
-        elseif familyName == carreau then
+        elseif familyName == 'carreau' then
         number = 4
     end
 
     --Get the path of the .png
-    familyName = ""
---    self[familyName].ZA.png = "cards\\" .. tostring(Number)
---    self[familyName].Z2.png = "cards\\" .. tostring(Number*2)
---    self[familyName].Z3.png = "cards\\" .. tostring(Number*3)
---    self[familyName].Z4.png = "cards\\" .. tostring(Number*4)
---    self[familyName].Z5.png = "cards\\" .. tostring(Number*5)
---    self[familyName].Z6.png = "cards\\" .. tostring(Number*6)
---    self[familyName].Z7.png = "cards\\" .. tostring(Number*7)
---    self[familyName].Z8.png = "cards\\" .. tostring(Number*8)
---    self[familyName].Z9.png = "cards\\" .. tostring(Number*9)
---    self[familyName].ZJ.png = "cards\\" .. tostring(Number*10)
---    self[familyName].ZQ.png = "cards\\" .. tostring(Number*11)
---    self[familyName].ZK.png = "cards\\" .. tostring(Number*12)
---    self[familyName].ZK.png = "cards\\" .. tostring(Number*13)
+    print("F:\\GIT\\Karavan\\Korona2\\cards\\" .. tostring(number) .. '.png')
+    local basePath = "F:\\GIT\\Karavan\\Korona2\\cards\\"
+    
+    self[familyName][1] = basePath .. tostring(number) .. '.png'
+    self[familyName][2] = basePath .. tostring(number*2) .. '.png'
+    self[familyName][3] = basePath .. tostring(number*3).. '.png'
+    self[familyName][4] = basePath .. tostring(number*4).. '.png'
+    self[familyName][5] = basePath .. tostring(number*5).. '.png'
+    self[familyName][6] = basePath .. tostring(number*6).. '.png'
+    self[familyName][7] = basePath .. tostring(number*7).. '.png'
+    self[familyName][8] = basePath .. tostring(number*8).. '.png'
+    self[familyName][9] = basePath .. tostring(number*9).. '.png'
+    self[familyName][10] = basePath .. tostring(number*10).. '.png'
+    self[familyName][11] = basePath .. tostring(number*11).. '.png'
+    self[familyName][12] = basePath .. tostring(number*12).. '.png'
+    self[familyName][13] = basePath .. tostring(number*13).. '.png'
+    print(self[familyName][13])
 end
-
 
 
 
