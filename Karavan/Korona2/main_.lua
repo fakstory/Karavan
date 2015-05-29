@@ -1,4 +1,4 @@
-require "CiderDebugger";-- 
+-- 
 
 local centerX = display.contentCenterX
 local centerY = display.contentCenterY
