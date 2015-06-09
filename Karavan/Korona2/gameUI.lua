@@ -30,7 +30,7 @@ module(..., package.seeall)
 -- 		object:addEventListener( "touch", dragBody )
 
 
-function showCard(familyName, Number)
+function ___showCard(familyName, Number)
     local png = 'cards\\' .. tostring(familyName) .. tostring(Number)
     
     local StaticCardOff = display.newImage( png, 120, 392 )
