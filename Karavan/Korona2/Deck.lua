@@ -13,6 +13,8 @@ TREFLE = 'TREFLE',
 }
 physics = require( "physics" )
 
+
+
 function Deck:new(id)
     print('New Deck is created: ' .. tostring(id))
     	local instance = {}
@@ -26,66 +28,23 @@ function Deck:new(id)
     return self
 end
 
+
+function Deck:getCardPath(familyName, number)
+    return self.DeckOfCards[familyName][number]
+end
+
+
 function Deck:showCard(familyName, number)
     print("Deck:showCard : " .. familyName, number)
- --   local cardpath = self:getCardPath(familyName, number)
- --   print (cardpath)
-    --print('path: ' .. self.DeckOfCards[familyName][number])
---    local png = 'cards\\' .. tostring(familyName) .. tostring(Number)
---    local id_showcard = #self.showcard + 1
---    print('id showcard: ' ..id_showcard)
---    self.showcard[id_showcard] = display.newImage( 'crate.png', 120, 392 ) 
---    
---    physics:addBody( self.showcard[id_showcard] )
---    
---    self.showcard[id_showcard]:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable
---    self.showcard[id_showcard].isFixedRotation = true
-
-local ground = display.newImage( "ground.png", 160, 445 )
-physics.addBody( ground, "static", { friction=0.5, bounce=0.3 } )
-
-
-local crate1 = display.newImage( "cards\\1.png", 120, 392 )
-physics.addBody( crate1 )
-crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
-
-
-
-
-
-
-
-
-
-
-
---
---
---local crate1 = display.newImage( "cards\\1.png", 72, 96 )
---physics:addBody( crate1 )
---crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
---
-
---showCard('trefle', '3')
---what is the problem here!!?
---local png = self.DeckOfCards[familyName][number]
---print("showing this cards : " .. png)
---
---
---local shit = display.newImage( "F:\GIT\Karavan\Korona2\cards\1.png")
---
---
-----physics:addBody( shit)
---
---card:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
---
---
---
---
---local crate1 = display.newImage( "crate.png", 120, 392 )
+    
+    
+--local crate1 = display.newImage( "cards\\1.png", 120, 392 )
 --physics.addBody( crate1 )
 --crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 
+local crate1 = display.newImage( self:getCardPath(familyName, number), 120, 392 )
+physics.addBody( crate1 )
+crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 
 end
 
@@ -116,8 +75,8 @@ function Deck:addFamily(familyName)
 print (tostring(number))
     --Get the path of the .png
     --print("F:\\GIT\\Karavan\\Korona2\\cards\\" .. tostring(number) .. '.png')
-    local basePath = "F:\\GIT\\Karavan\\Korona2\\cards\\"
-    
+    --local basePath = "F:\\GIT\\Karavan\\Korona2\\cards\\"
+    local basePath = "cards\\"
     self.DeckOfCards[familyName][1] = basePath .. tostring(number) .. '.png'
     print(self.DeckOfCards[familyName][1])
     self.DeckOfCards[familyName][13] = basePath .. tostring(number+4) .. '.png'
@@ -136,9 +95,7 @@ print (tostring(number))
     print(self.DeckOfCards[familyName][13])
 end
 
-function Deck:getCardPath(familyName, number)
-    return self.DeckOfCards[familyName][number]
-end
+
 
 
 
