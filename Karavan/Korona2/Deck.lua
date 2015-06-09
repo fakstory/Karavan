@@ -68,19 +68,18 @@ function Deck:getFamilyNumber(familyName)
     end 
     return number
 end
+
+
+
 function Deck:addFamily(familyName)
     print("creating family = " .. tostring(familyName))
 
     local number = self:getFamilyNumber(familyName)
 print (tostring(number))
     --Get the path of the .png
-    --print("F:\\GIT\\Karavan\\Korona2\\cards\\" .. tostring(number) .. '.png')
-    --local basePath = "F:\\GIT\\Karavan\\Korona2\\cards\\"
     local basePath = "cards\\"
     self.DeckOfCards[familyName][1] = basePath .. tostring(number) .. '.png'
-    print(self.DeckOfCards[familyName][1])
     self.DeckOfCards[familyName][13] = basePath .. tostring(number+4) .. '.png'
-    print(self.DeckOfCards[familyName][2])
     self.DeckOfCards[familyName][12] = basePath .. tostring(number+8).. '.png'
     self.DeckOfCards[familyName][11] = basePath .. tostring(number+12).. '.png'
     self.DeckOfCards[familyName][10] = basePath .. tostring(number+16).. '.png'
