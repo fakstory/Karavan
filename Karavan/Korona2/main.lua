@@ -25,7 +25,18 @@ local Croupier = Deck:new(3)
 
 Player1:showCard('trefle', 1)
 Player2:showCard('coeur', 4)
-Croupier:showCard('carreau', 8)
+
+Croupier:showCardAt('carreau',8, 0, 0)
+
+
+
+
+--Main
+
+
+
+
+
 
 --Player2:showCard('trefle', 1)
 --Croupier:showCard('trefle', 1)
@@ -85,9 +96,6 @@ physics.addBody( ground, "static", { friction=0.5, bounce=0.3 } )
 
 
 
-
-
-
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --Do Not edit unless you know what you do
@@ -125,19 +133,19 @@ local gameloop = function(event)
 										box_spec.lower_right.x,
 										box_spec.lower_right.y )
 
---	if hits then
---
---		label_all_hits( hits )
---
---		box:setStrokeColor( 192/255, 192/255, 192/255 )
---		box:setFillColor( 1, 1, 1, 92/255 )
---
---	else
---
---		box:setStrokeColor( 0.5, 0.5, 0.5 )
---		box:setFillColor( 1, 1, 1, 64/255 )
---
---	end
+	if hits then
+
+		label_all_hits( hits )
+
+		box:setStrokeColor( 192/255, 192/255, 192/255 )
+		box:setFillColor( 1, 1, 1, 92/255 )
+
+	else
+
+		box:setStrokeColor( 0.5, 0.5, 0.5 )
+		box:setFillColor( 1, 1, 1, 64/255 )
+
+	end
 
 end
 

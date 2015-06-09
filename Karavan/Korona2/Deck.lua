@@ -35,21 +35,32 @@ end
 
 
 function Deck:showCard(familyName, number)
-    print("Deck:showCard : " .. familyName, number)
+    print("Deck:showCard : " .. familyName, number) 
+    --local crate1 = display.newImage( "cards\\1.png", 120, 392 )
+    --physics.addBody( crate1 )
+    --crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
+    local cardPath = self:getCardPath(familyName, number)
+    if(cardPath == nil) then
+        return 'This Card is not in the Deck.'
+    end
     
-    
---local crate1 = display.newImage( "cards\\1.png", 120, 392 )
---physics.addBody( crate1 )
---crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
-
-local crate1 = display.newImage( self:getCardPath(familyName, number), 120, 392 )
-physics.addBody( crate1 )
-crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
-
+    local crate1 = display.newImage( cardPath, 120, 392)
+    physics.addBody( crate1 )
+    crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 end
 
-function Deck:test(tt)
-    print ('test  ' .. tt)
+
+function Deck:showCardAt(familyName,number,px, py)
+    
+     local cardPath = self:getCardPath(familyName, number)
+    if(cardPath == nil) then
+        return 'This Card is not in the Deck.'
+    end
+    
+    local crate1 = display.newImage( cardPath, px, py)
+    physics.addBody( crate1 )
+    crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.   
+    
 end
 
 function Deck:getFamilyNumber(familyName)
@@ -68,8 +79,6 @@ function Deck:getFamilyNumber(familyName)
     end 
     return number
 end
-
-
 
 function Deck:addFamily(familyName)
     print("creating family = " .. tostring(familyName))
@@ -94,7 +103,15 @@ print (tostring(number))
     print(self.DeckOfCards[familyName][13])
 end
 
+function Deck:addJokers(numbers)
+    print("creating family = " .. tostring(familyName))
+    local number = self:getFamilyNumber(familyName)
+    --Get the path of the .png
+    local basePath = "cards\\"
+    self.DeckOfCards[familyName][1] = basePath .. tostring(number) .. '.png'
+    self.DeckOfCards[familyName][13] = basePath .. tostring(number+4) .. '.png'
 
+end
 
 
 
