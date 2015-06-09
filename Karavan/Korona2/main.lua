@@ -24,8 +24,8 @@ local Player2 = Deck:new(2)
 local Croupier = Deck:new(3)
 
 Player1:showCard('trefle', 1)
-Player2:showCard('trefle', 1)
-Croupier:showCard('trefle', 1)
+--Player2:showCard('trefle', 1)
+--Croupier:showCard('trefle', 1)
 --local Player1 = Deck:new(
 --local Player2 = Deck:new()
 --local Croupier = Deck:new()

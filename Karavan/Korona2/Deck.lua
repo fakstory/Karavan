@@ -43,8 +43,8 @@ physics.addBody( ground, "static", { friction=0.5, bounce=0.3 } )
 --what is the problem here!!?
 local png = self.DeckOfCards[familyName][number]
 print("showing this cards : " .. png)
-local test = display.newImage( "cards\\1.png", 72, 96 )
-physics:addBody( test )
+local shit = display.newImage( "cards1.png", 72, 96 )
+physics:addBody( shit )
 --card:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
 
 
