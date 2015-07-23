@@ -1,17 +1,14 @@
 
 local physics = require( "physics" )
 local gameUI = require("gameUI")
+
 Deck = {
-cardInstance = {trefle = {}, pique = {}, coeur = {}, carreau = {} },
-DeckOfCards = {trefle = {}, pique = {}, coeur = {}, carreau = {} },
-showcard,
---trefle = {},
---pique = {},
---coeur = {},
---carreau = {},
-TREFLE = 'TREFLE',
+        cardInstance = {trefle = {}, pique = {}, coeur = {}, carreau = {} },
+        DeckOfCards = {trefle = {}, pique = {}, coeur = {}, carreau = {} },
+        showcard,
+        bodyInstance,
+        TREFLE = 'TREFLE',
 }
-physics = require( "physics" )
 
 
 
@@ -33,33 +30,30 @@ function Deck:getCardPath(familyName, number)
     return self.DeckOfCards[familyName][number]
 end
 
-
-function Deck:showCard(familyName, number)
-    print("Deck:showCard : " .. familyName, number) 
-    --local crate1 = display.newImage( "cards\\1.png", 120, 392 )
-    --physics.addBody( crate1 )
-    --crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
-    local cardPath = self:getCardPath(familyName, number)
-    if(cardPath == nil) then
-        return 'This Card is not in the Deck.'
-    end
-    
-    local crate1 = display.newImage( cardPath, 120, 392)
-    physics.addBody( crate1 )
-    crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.
-end
+local shape = {1,-89, 14,-83, 20,-70, 14,-57, 1,-51, -12,-57, -18,-70, -12,-83}
 
 
-function Deck:showCardAt(familyName,number,px, py)
+
+function Deck:showCard(familyName,number,px, py)
     
      local cardPath = self:getCardPath(familyName, number)
     if(cardPath == nil) then
         return 'This Card is not in the Deck.'
     end
     
-    local crate1 = display.newImage( cardPath, px, py)
-    physics.addBody( crate1 )
-    crate1:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable.   
+    self.bodyInstance = display.newImage( cardPath, px, py)
+    self.bodyInstance.isFixedRotation = true
+    
+    physics.addBody( self.bodyInstance , "static",{ density=1, friction=1, bounce=0, radius=25} )
+
+    self.bodyInstance:addEventListener( "touch", gameUI.dragBody ) -- Make the object draggable. 
+
+    --self.bodyInstance.collision = gameUI.onLocalCollision
+    --self.bodyInstance:addEventListener( "collision", self.bodyInstance )
+    --self.bodyInstance:addEventListener( "collision", gameUI.onLocalCollision )  
+    self.bodyInstance.collision = gameUI.onLocalCollision
+    self.bodyInstance:addEventListener( "collision", self.bodyInstance )
+    
     
 end
 
@@ -108,13 +102,15 @@ function Deck:addJokers(numbers)
     local number = self:getFamilyNumber(familyName)
     --Get the path of the .png
     local basePath = "cards\\"
-    self.DeckOfCards[familyName][1] = basePath .. tostring(number) .. '.png'
-    self.DeckOfCards[familyName][13] = basePath .. tostring(number+4) .. '.png'
+    self.DeckOfCards[familyName]['JokerBlanc'] = basePath .. tostring(number) .. '.png'
+    self.DeckOfCards[familyName]['JokerNoir'] = basePath .. tostring(number+4) .. '.png'
 
 end
 
 
-
+function getValue()
+    return self.Value
+end
 
 
 

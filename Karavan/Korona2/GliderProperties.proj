@@ -13,6 +13,16 @@
     "excludedFiles" : [ ],
     "sdkselect" : "track_selection",
     "extlibs" : [ ]
+  }, {
+    "config_name" : "release",
+    "autolibs" : [ ],
+    "fileAlias" : {
+    },
+    "plugin_props" : {
+    },
+    "excludedFiles" : [ ],
+    "sdkselect" : "track_selection",
+    "extlibs" : [ ]
   } ],
   "ver" : 4,
   "project_wide_config" : {
